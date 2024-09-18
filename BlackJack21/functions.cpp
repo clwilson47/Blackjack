@@ -67,6 +67,10 @@ void dealCards (int playerTotal, int dealerTotal)
         }
         else if (playerTotal == 21)
             cout << "Nice! Perfect Score! Lets see how the dealer does"; 
+        else if (playerTotal > 21)
+        {
+            cout << "Oh no! You busted! You lose!"
+        }
     } while (playerTotal < 21); 
     
 }
