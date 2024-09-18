@@ -40,11 +40,33 @@ int assignValues(int rnum, int card)
     Function: aceCheck
     Purpose: give ace card a value of 1 or 10 as appropiate 
 */
-void aceCheck(int playerTotal, int dealerTotal, int ace)
+int aceCheck(int playerTotal, int dealerTotal, int ace)
 {
     if(1 + playerTotal > 21)
         ace = 1; 
 
     if(10 + playerTotal < 21)
         ace = 10; 
+
+    return ace; 
+}
+
+/* 
+    Function: dealCards
+    Purpose: deal out cards as long as desired or until bust
+*/
+void dealCards (int playerTotal, int dealerTotal)
+{
+    do 
+    {
+        cout << "Your total is " << playerTotal; 
+
+        if (playerTotal < 21)
+        {
+            cout << "Would you like to draw another card?"; 
+        }
+        else if (playerTotal == 21)
+            cout << "Nice! Perfect Score! Lets see how the dealer does"; 
+    } while (playerTotal < 21); 
+    
 }
