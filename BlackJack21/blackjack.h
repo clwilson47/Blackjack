@@ -13,4 +13,5 @@ using namespace std;
 //function prototypes
 int assignValues(int, int); 
 int aceCheck(int, int, int); 
-void dealCards(int, int); 
+void dealPlayerCards(int); 
+void dealDealerCards (int, int); 

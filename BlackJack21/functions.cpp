@@ -52,25 +52,86 @@ int aceCheck(int playerTotal, int dealerTotal, int ace)
 }
 
 /* 
-    Function: dealCards
-    Purpose: deal out cards as long as desired or until bust
+    Function: dealPlayerCards
+    Purpose: deal player cards as long as desired or until bust
 */
-void dealCards (int playerTotal, int dealerTotal)
+void dealPlayerCards (int playerTotal)
 {
+    char drawAgain = 'y'; 
+
     do 
     {
-        cout << "Your total is " << playerTotal; 
+        cout << "\n\nYour total is " << playerTotal; 
 
+        //draw more cards less than 21
         if (playerTotal < 21)
         {
-            cout << "Would you like to draw another card?"; 
+            cout << "\n\nWould you like to draw another card?"; 
+            cout << "\nPlease enter y/n: "; 
+            cin >> drawAgain; 
+            cin.ignore(); 
         }
+
+        //case if player gets perfect 21
         else if (playerTotal == 21)
-            cout << "Nice! Perfect Score! Lets see how the dealer does"; 
+        {
+            cout << "\n\nNice! Perfect Score! Lets see how the dealer does"; 
+            drawAgain = 'n'; 
+        }
+
+        
+        //case player goes over 21
         else if (playerTotal > 21)
         {
-            cout << "Oh no! You busted! You lose!"
+            cout << "\n\nOh no! You busted! You lose!"; 
+            drawAgain = 'n'; 
         }
-    } while (playerTotal < 21); 
+    } while (playerTotal < 21 || drawAgain == 'y' || drawAgain == 'Y'); 
     
+}
+
+
+/*
+    Function: dealDealerCards
+    Purpose: let the dealer play against the player after player done
+*/
+void dealDealerCards (int dealerTotal, int playerTotal)
+{
+    char drawAgain = 'y'; 
+    do 
+    {
+        cout << "\n\nThe dealer's total is " << dealerTotal; 
+
+        //dealer tries to beat player if his cards are less than theirs
+        if (dealerTotal < playerTotal)
+        {
+            cout << "\n\nThe dealer will now draw another card"; 
+            drawAgain = 'y'; 
+        
+        }
+
+        //dealer stops drawing cards if they beat the player
+        else if (dealerTotal > playerTotal)
+        {
+            cout << "Oh no! The dealer got a higher score than you! You lose."; 
+            drawAgain = 'n'; 
+        }
+
+        //case if dealer and player tie for 21
+        else if (dealerTotal == 21)
+        {
+            cout << "\n\nOh no! The dealer tied with you! You lose."; 
+            drawAgain = 'n'; 
+        }
+
+        
+        //case if dealer goes over 21
+        else if (dealerTotal > 21)
+        {
+            cout << "\n\nThe dealer busted! You win!"; 
+            drawAgain = 'n'; 
+        }
+
+
+    } while (drawAgain == 'y'); 
 }
