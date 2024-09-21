@@ -1,4 +1,6 @@
+/*
 
+*/
 
 
 #include "blackjack.h"
@@ -8,15 +10,12 @@
     Function: assignValues
     Purpose: generate random values to be assigned to cards with appropiate values for jack, queen, king
 */
-int assignValues(int rnum, int card)
+int assignValues(int playerTotal, int dealerTotal)
 {
-    //initialize values
-    rnum = 0;
-    card = 0;
-    int ace = 0; 
+    int rnum = 0, card = 0; 
+
     //generate random number for the 13 cards in deck
     rnum = (rand() % 13 + 1);
-
     card = rnum;
 
     // jack, queen, and king = 10
@@ -25,11 +24,9 @@ int assignValues(int rnum, int card)
     
     //ace is special
     if (card == 1)
-    {
-        ace = 1; 
-
-        //return ace uniquely since it's special
-        return ace; 
+    { 
+        card = aceCheck(playerTotal, dealerTotal); 
+        return card; 
     }
 
     //otherwise just return card 
@@ -40,27 +37,40 @@ int assignValues(int rnum, int card)
     Function: aceCheck
     Purpose: give ace card a value of 1 or 10 as appropiate 
 */
-int aceCheck(int playerTotal, int dealerTotal, int ace)
+int aceCheck(int playerTotal, int dealerTotal)
 {
-    if(1 + playerTotal > 21)
+    int ace = 0; 
+    if(1 + playerTotal > 21 || 1 + dealerTotal > 21)
         ace = 1; 
 
-    if(10 + playerTotal < 21)
+    else if(10 + playerTotal < 21 || 10 + dealerTotal < 21)
         ace = 10; 
 
     return ace; 
 }
 
+
 /* 
     Function: dealPlayerCards
     Purpose: deal player cards as long as desired or until bust
 */
-void dealPlayerCards (int playerTotal)
+void dealPlayerCards (int playerTotal, string cardName)
 {
     char drawAgain = 'y'; 
+    int rnum = 0, card = 0;
 
     do 
     {
+        cout << "\n\nThe dealer will now deal your first card"; 
+
+        //player total is running value 
+        playerTotal += assignValues(rnum, card); 
+
+        //need to check for previous aces
+
+
+        // output card and total
+        cout << "\nYour card: " << cardName[card - 1];
         cout << "\n\nYour total is " << playerTotal; 
 
         //draw more cards less than 21
@@ -86,6 +96,7 @@ void dealPlayerCards (int playerTotal)
             cout << "\n\nOh no! You busted! You lose!"; 
             drawAgain = 'n'; 
         }
+
     } while (playerTotal < 21 || drawAgain == 'y' || drawAgain == 'Y'); 
     
 }
@@ -100,6 +111,14 @@ void dealDealerCards (int dealerTotal, int playerTotal)
     char drawAgain = 'y'; 
     do 
     {
+        int rnum, card = 0; 
+
+        //dealer total is running value 
+        dealerTotal += assignValues(rnum, card); 
+
+        //need to check for previous aces
+
+        
         cout << "\n\nThe dealer's total is " << dealerTotal; 
 
         //dealer tries to beat player if his cards are less than theirs
