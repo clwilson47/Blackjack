@@ -1,8 +1,8 @@
 /*
-Name: Black Jack function
+Name: blackjack.h
 Author: Cole Wilson
-Date: 9-18-24
-Purpose: run a black jack game for the user
+Date: 10-31-24
+Purpose: classes to store deck of card stuff 
 */
 
 #include <iostream>
@@ -45,7 +45,25 @@ class Card
 
 };
 
-class DeckofCards
+struct DeckofCards
 {
+    
+    //names for the cards 
+    string cardName[13] = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Jack", "Queen", "King"};
+
+    //number of total cards 
+    int numCards; 
+    numCards = 52; 
+
+    string cardDeck[numCards]; 
+    
+    
+
+    //update values
+    for (int i = 0; i < numCards; i++)
+    {
+        
+    }
+    
 
 }; 

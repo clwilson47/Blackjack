@@ -1,5 +1,8 @@
 /*
-
+    Name: Black Jack function
+    Author: Cole Wilson
+    Date: 10-31-24
+    Purpose: run a black jack game for the user
 */
 
 

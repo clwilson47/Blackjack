@@ -1,5 +1,8 @@
 /*
-
+    Name: functions.cpp
+    Author: Cole Wilson
+    Date: 10-31-24
+    Purpose: various functions to make the driver actually work
 */
 
 
