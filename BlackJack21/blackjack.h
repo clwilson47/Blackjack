@@ -22,6 +22,7 @@ class Card
         //stores card info 
         int cardValue; 
         string cardName; 
+        
 
     public: 
 
@@ -43,27 +44,29 @@ class Card
             return os; 
         }
 
+
+        //Constructor 
+        void DeckofCards()
+        {
+            //names for the cards 
+            string cardName[13] = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
+
+            Card deck; 
+
+            //initialize deck of cards with names and values 
+            for(int i = 0; i < 13; i++)
+            {
+                deck.setCardName(cardName[i]); 
+
+                if(i < 10)
+                    deck.setCardValue(i);           //values for Ace (special, but initally 1) and 2-9 
+                else if(i > 10)
+                    deck.setCardValue(10);          //values for jack, queen, king all 10
+            }
+
+        }
+
+
+
 };
 
-struct DeckofCards
-{
-    
-    //names for the cards 
-    string cardName[13] = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Jack", "Queen", "King"};
-
-    //number of total cards 
-    int numCards; 
-    numCards = 52; 
-
-    string cardDeck[numCards]; 
-    
-    
-
-    //update values
-    for (int i = 0; i < numCards; i++)
-    {
-        
-    }
-    
-
-}; 
