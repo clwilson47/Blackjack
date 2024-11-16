@@ -15,7 +15,6 @@ int main()
 {
     //a bunch of variable initializations
     char runProg = 'y';
-    string cardName[13] = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Jack", "Queen", "King"};
     int playerTotal = 0, dealerTotal = 0; 
     
 

@@ -20,8 +20,10 @@ class Card
 {
     private: 
         //stores card info 
-        int cardValue; 
-        string cardName; 
+        int cardValue = 0;                      //face value, 1-9 or 10
+        string cardName = "None";               //name ("ace", etc)
+        int numAces = 0;                        //to track aces cause they special (1 or 10)
+        int playerTotal, dealerTotal = 0;       //to track player and dealer's totals seperately 
         
 
     public: 
@@ -29,11 +31,17 @@ class Card
         //getters 
         int getCardValue(){return cardValue;}
         string getCardName(){return cardName;}
+        int getNumAces(){return numAces;}
+        int getPlayerTotal(){return playerTotal;}
+        int getDealerTotal(){return dealerTotal;}
         
 
         //setters 
         void setCardValue(int newCardValue){cardValue = newCardValue;}
         void setCardName(string newCardName){cardName = newCardName;}
+        void setNumAces(int newNumAces){numAces = newNumAces;}
+        void setPlayerTotal(int newPlayerTotal){playerTotal = newPlayerTotal;}
+        void setDealerTotal(int newDealerTotal){dealerTotal = newDealerTotal;}
        
 
         //stream operator overload
@@ -43,6 +51,25 @@ class Card
             
             return os; 
         }
+
+         //comparison operator overloads
+            friend bool operator < (const Card& C1, const Card& C2)
+            {
+                return (C1.cardValue < C2.cardValue);
+                 
+            }
+
+            friend bool operator < (const Card& C1, const Card& C2)
+            {
+                return (C1.cardValue > C2.cardValue);
+                 
+            }
+
+            friend bool operator == (const Card& C1, const Card& C2)
+            {
+                return (C1.cardValue == C2.cardValue);
+                 
+            }
 
 
         //Constructor 
@@ -59,7 +86,11 @@ class Card
                 deck.setCardName(cardName[i]); 
 
                 if(i < 10)
+                {
                     deck.setCardValue(i);           //values for Ace (special, but initally 1) and 2-9 
+                    numAces++;                      //updating values of aces 
+                }
+                    
                 else if(i > 10)
                     deck.setCardValue(10);          //values for jack, queen, king all 10
             }
@@ -69,4 +100,3 @@ class Card
 
 
 };
-

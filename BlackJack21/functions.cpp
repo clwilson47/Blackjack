@@ -12,21 +12,18 @@
     Function: assignValues
     Purpose: generate random values to be assigned to cards with appropiate values for jack, queen, king
 */
-int assignValues(int playerTotal, int dealerTotal)
+int assignValues(Card *cards)
 {
     int rnum = 0, card = 0; 
 
     //generate random number for the 13 cards in deck
     rnum = (rand() % 13 + 1);
     card = rnum;
-
-   
     
     //ace is special
     if (card == 1)
     { 
-        card = aceCheck(playerTotal, dealerTotal); 
-        return card; 
+        card
     }
 
     //otherwise just return card 
@@ -37,16 +34,17 @@ int assignValues(int playerTotal, int dealerTotal)
     Function: aceCheck
     Purpose: give ace card a value of 1 or 10 as appropiate 
 */
-int aceCheck(int playerTotal, int dealerTotal)
+void aceCheck(Card *cards)
 {
-    int ace = 0; 
-    if(1 + playerTotal > 21 || 1 + dealerTotal > 21)
-        ace = 1; 
+    int numAces; 
+    numAces = cards->getNumAces(); 
+    if(1 + cards->getPlayerTotal() > 21 || 1 + cards->getDealerTotal() > 21)
+        
 
     else if(10 + playerTotal < 21 || 10 + dealerTotal < 21)
         ace = 10; 
 
-    return ace; 
+     
 }
 
 
@@ -54,7 +52,7 @@ int aceCheck(int playerTotal, int dealerTotal)
     Function: dealPlayerCards
     Purpose: deal player cards as long as desired or until bust
 */
-void dealPlayerCards (int playerTotal, string cardName)
+void dealPlayerCards (Card *cards)
 {
     char drawAgain = 'y'; 
     int rnum = 0, card = 0;
@@ -106,7 +104,7 @@ void dealPlayerCards (int playerTotal, string cardName)
     Function: dealDealerCards
     Purpose: let the dealer play against the player after player done
 */
-void dealDealerCards (int dealerTotal, int playerTotal)
+void dealDealerCards (Card *cards)
 {
     char drawAgain = 'y'; 
     do 
